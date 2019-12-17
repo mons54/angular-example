@@ -1,16 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { Routing } from './app.routing';
+
+import { LoginComponent } from './login/login.component';
+import { MeComponent } from './me/me.component';
+import { RegisterComponent } from './register/register.component';
+
+import { ApiService } from './../services/service.api';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    MeComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    Routing
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: ApiService, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

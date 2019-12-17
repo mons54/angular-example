@@ -1,0 +1,51 @@
+<h1>Se connecter</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            id="email"
+            type="email"
+            formControlName="email"
+            class="form-control"
+            required
+            email/>
+          <small *ngIf="fields.email.errors && (fields.email.dirty || fields.email.touched)" class="form-text text-muted">
+            <div *ngIf="fields.email.errors.required">
+              Veuillez indiquer votre email.
+            </div>
+            <div *ngIf="fields.email.errors.email">
+              Veuillez indiquer un email valide.
+            </div>
+          </small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            class="form-control"
+            required/>
+          <small *ngIf="fields.password.errors && (fields.password.dirty || fields.password.touched)" class="form-text text-muted">
+            <div *ngIf="fields.password.errors.required">
+              Veuillez indiquer un mot de passe.
+            </div>
+          </small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+          <button class="btn btn-primary">Login</button>
+          <a routerLink="/register" class="btn btn-link">Register</a>
+      </div>
+    </div>
+  </div>
+</form>
