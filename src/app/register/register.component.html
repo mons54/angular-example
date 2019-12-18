@@ -32,9 +32,9 @@
               required
               [ngClass]="{ 'is-invalid': hasError(fields.name) }"/>
             <small *ngIf="hasError(fields.name)" class="form-text text-muted">
-              <div *ngIf="fields.email.errors.required">
+              <span *ngIf="fields.email.errors.required">
                 Veuillez indiquer votre nom.
-              </div>
+              </span>
             </small>
         </div>
         <div class="form-group">
@@ -48,12 +48,12 @@
               email
               [ngClass]="{ 'is-invalid': hasError(fields.email) }"/>
             <small *ngIf="hasError(fields.email)" class="form-text text-muted">
-              <div *ngIf="fields.email.errors.required">
+              <span *ngIf="fields.email.errors.required">
                 Veuillez indiquer votre email.
-              </div>
-              <div *ngIf="fields.email.errors.email">
+              </span>
+              <span *ngIf="fields.email.errors.email">
                 Veuillez indiquer un email valide.
-              </div>
+              </span>
             </small>
         </div>
         <div class="form-group">

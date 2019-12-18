@@ -12,17 +12,17 @@ export class LoginComponent extends FormService {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {
-    super(http)
+    super(http);
     this.route.queryParams.subscribe(params => {
       console.log(params)
     });
     this.form = this.formBuilder.group({
       email: '',
       password: ''
-    })
+    });
   }
 
-  onSubmit () {
-    super.submit('/login', this.form.value)
+  onSubmit() {
+    super.submit('/login', this.form.value);
   }
 }

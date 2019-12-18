@@ -10,17 +10,17 @@ export class RegisterComponent extends FormService {
     protected http: HttpClient,
     private formBuilder: FormBuilder
   ) {
-    super(http)
+    super(http);
     this.form = this.formBuilder.group({
       name: '',
       email: '',
       password: ''
-    })
+    });
   }
 
-  onSubmit () {
+  onSubmit() {
     super.submit('/register', this.form.value, () => {
 
-    })
+    });
   }
 }
