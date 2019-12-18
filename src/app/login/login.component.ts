@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { FormService } from '../services/form.service';
@@ -9,13 +9,10 @@ import { FormService } from '../services/form.service';
 export class LoginComponent extends FormService {
   constructor(
     protected http: HttpClient,
-    private route: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     super(http);
-    this.route.queryParams.subscribe(params => {
-      console.log(params)
-    });
     this.form = this.formBuilder.group({
       email: '',
       password: ''
@@ -23,6 +20,8 @@ export class LoginComponent extends FormService {
   }
 
   onSubmit() {
-    super.submit('/login', this.form.value);
+    super.submit('/login', this.form.value, () => {
+      this.router.navigate(['me']);
+    });
   }
 }

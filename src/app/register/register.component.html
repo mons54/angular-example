@@ -19,7 +19,14 @@
         class="alert alert-danger"
         role="alert"
         *ngIf="formError">
-        Une erreur est survenue
+        <span *ngIf="formError.status === 409; else errorServer">
+          Cette adresse email est déjà enregistrée
+          <br>
+          <a href="/login">Se connecter</a>
+        </span>
+        <ng-template #errorServer>
+          Une erreur est survenue
+        </ng-template>
       </div>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="form-group">

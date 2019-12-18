@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import { FormService } from '../services/form.service';
@@ -8,7 +9,8 @@ import { FormService } from '../services/form.service';
 export class RegisterComponent extends FormService {
   constructor(
     protected http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     super(http);
     this.form = this.formBuilder.group({
@@ -20,7 +22,7 @@ export class RegisterComponent extends FormService {
 
   onSubmit() {
     super.submit('/register', this.form.value, () => {
-
+      this.router.navigate(['me']);
     });
   }
 }
