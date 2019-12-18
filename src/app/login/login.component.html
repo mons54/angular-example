@@ -1,51 +1,66 @@
-<h1>Se connecter</h1>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<style>
+.container {
+  height: calc(100vh - 106px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container > div {
+  flex: 1;
+}
+</style>
+
+<div class="container">
   <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            formControlName="email"
-            class="form-control"
-            required
-            email/>
-          <small *ngIf="fields.email.errors && (fields.email.dirty || fields.email.touched)" class="form-text text-muted">
-            <div *ngIf="fields.email.errors.required">
-              Veuillez indiquer votre email.
-            </div>
-            <div *ngIf="fields.email.errors.email">
-              Veuillez indiquer un email valide.
-            </div>
-          </small>
+    <div class="col-md-6 offset-md-3 border rounded p-4">
+      <h3 class="mb-4 text-center">Connexion</h3>
+      <div
+        class="alert alert-danger"
+        role="alert"
+        *ngIf="formError">
+        Email ou mot de passe invalide
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              class="form-control"
+              required
+              email
+              [ngClass]="{ 'is-invalid': hasError(fields.email) }"/>
+            <small *ngIf="hasError(fields.email)" class="form-text text-muted">
+              <div *ngIf="fields.email.errors.required">
+                Veuillez indiquer votre email.
+              </div>
+              <div *ngIf="fields.email.errors.email">
+                Veuillez indiquer un email valide.
+              </div>
+            </small>
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input
             id="password"
             type="password"
             formControlName="password"
             class="form-control"
-            required/>
-          <small *ngIf="fields.password.errors && (fields.password.dirty || fields.password.touched)" class="form-text text-muted">
+            required
+            [ngClass]="{ 'is-invalid': hasError(fields.password) }"/>
+          <small *ngIf="hasError(fields.password)" class="form-text text-muted">
             <div *ngIf="fields.password.errors.required">
               Veuillez indiquer un mot de passe.
             </div>
           </small>
-      </div>
+        </div>
+        <div class="d-flex mt-4">
+          <a routerLink="/register" class="btn btn-link">Créer un compte</a>
+          <button class="ml-auto btn btn-primary">Se connecter</button>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-          <button class="btn btn-primary">Login</button>
-          <a routerLink="/register" class="btn btn-link">Register</a>
-      </div>
-    </div>
-  </div>
-</form>
+</div>

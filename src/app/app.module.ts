@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { MeComponent } from './me/me.component';
 import { RegisterComponent } from './register/register.component';
 
-import { ApiService } from './../services/service.api';
+import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
